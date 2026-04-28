@@ -2,7 +2,7 @@ name: Partner Docs Check
 
 on:
   schedule:
-    - cron: '0 7 * * *'  # Daily at 12:00 PM PKT (07:00 UTC)
+    - cron: '0 7 * * *'
   workflow_dispatch:
 
 jobs:
@@ -11,54 +11,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      
+
       - name: Install dependencies
         run: pip install requests
-      
+
       - name: Run check
-        run: |
-          cd ${{ github.workspace }}
-          python3 360dialog_docs_check.py
-        shell: bash
-      
+        run: python3 360dialog_docs_check.py
+
       - name: Send email notification
-        run: |
+        run: >
           python3 -c "
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from datetime import datetime
-
 gmail = 'mohdalizahoor@gmail.com'
 app_pass = 'qlwblerbnwomowna'
 send_to = 'mohdalizahoor@gmail.com'
-
 msg = MIMEMultipart()
 msg['From'] = gmail
 msg['To'] = send_to
-msg['Subject'] = '📊 360dialog Partner Docs - Daily Check Complete'
-
-body = '''360dialog Partner Docs Check
-================================
-
-Status: Completed successfully
-
-The daily check has finished.
-
----
-Automated from GitHub Actions
-'''
+msg['Subject'] = '360dialog Partner Docs - Check Complete'
+body = 'Daily check completed. View log in GitHub Actions.'
 msg.attach(MIMEText(body, 'plain'))
-
 server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
 server.login(gmail, app_pass)
 server.sendmail(gmail, send_to, msg.as_string())
 server.quit()
-print('Email sent')
 "
