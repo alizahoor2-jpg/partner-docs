@@ -9,13 +9,18 @@ import json
 import os
 import smtplib
 import time
+import requests
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime
 from pathlib import Path
 
 BASE_URL = "https://docs.360dialog.com/partner"
-STORAGE_FILE = Path.home() / ".360dialog_docs_baseline.json"
+# Use local file for GitHub Actions
+if os.environ.get('GITHUB_ACTIONS'):
+    STORAGE_FILE = Path(__file__).parent / ".baseline.json"
+else:
+    STORAGE_FILE = Path.home() / ".360dialog_docs_baseline.json"
 
 # Email config (can be overridden by environment variables for GitHub Actions)
 GMAIL = os.environ.get("GMAIL_ADDR", "mohdalizahoor@gmail.com")
