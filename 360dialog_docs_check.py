@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 360dialog Partner Docs - Detailed Change Detection
-Detects EXACT changes at sentence level with section context
+Shows EXACT lines added/removed with context
 """
 
 import hashlib
@@ -11,6 +11,7 @@ import smtplib
 import time
 import requests
 import re
+from difflib import unified_diff
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime
@@ -56,120 +57,108 @@ def get_urls():
                     urls.append(url)
     return urls
 
-def extract_sections(content):
-    """Extract sections (headings) and their content"""
-    sections = []
-    lines = content.split('\n')
-    current_section = "Introduction"
-    current_lines = []
+def find_line_changes(old_content, new_content):
+    """Find EXACT lines added and removed"""
+    old_lines = old_content.split('\n')
+    new_lines = new_content.split('\n')
     
-    for line in lines:
-        # Check if heading (# followed by text)
-        if re.match(r'^#{1,6}\s+', line):
-            if current_lines:
-                sections.append({
-                    "section": current_section.strip(),
-                    "content": ' '.join(current_lines).strip()
-                })
-            current_section = re.sub(r'^#{1,6}\s+', '', line).strip()
-            current_lines = []
-        else:
-            current_lines.append(line)
+    added_lines = []
+    removed_lines = []
     
-    # Last section
-    if current_lines:
-        sections.append({
-            "section": current_section.strip(),
-            "content": ' '.join(current_lines).strip()
-        })
+    # Simple approach: compare line by line
+    old_set = set(old_lines)
+    new_set = set(new_lines)
     
-    return sections
-
-def find_sentence_changes(old_content, new_content):
-    """Find exact sentence/phrase changes between old and new"""
-    changes = []
+    # Find added lines (in new but not in old)
+    for i, line in enumerate(new_lines):
+        if line not in old_set and line.strip():  # Only non-empty lines
+            # Find context (previous line)
+            context_start = max(0, i-1)
+            context = new_lines[context_start:i+2] if i > 0 else new_lines[i:i+2]
+            added_lines.append({
+                "line": line.strip()[:150],  # Truncate long lines
+                "line_number": i + 1,
+                "context": [c.strip()[:80] for c in context if c.strip()][:3]
+            })
     
-    # Split into sentences (rough approach)
-    old_sents = re.split(r'(?<=[.!?])\s+', old_content)
-    new_sents = re.split(r'(?<=[.!?])\s+', new_content)
+    # Find removed lines (in old but not in new)
+    for i, line in enumerate(old_lines):
+        if line not in new_set and line.strip():
+            context_start = max(0, i-1)
+            context = old_lines[context_start:i+2] if i > 0 else old_lines[i:i+2]
+            removed_lines.append({
+                "line": line.strip()[:150],
+                "line_number": i + 1,
+                "context": [c.strip()[:80] for c in context if c.strip()][:3]
+            })
     
-    # Find additions
-    old_set = set(old_sents)
-    new_set = set(new_sents)
-    
-    for sent in new_sents:
-        sent = sent.strip()
-        if sent and sent not in old_set:
-            changes.append({"type": "added", "text": sent[:200]})
-    
-    for sent in old_sents:
-        sent = sent.strip()
-        if sent and sent not in new_set:
-            changes.append({"type": "removed", "text": sent[:200]})
-    
-    return changes
+    return added_lines[:5], removed_lines[:5]  # Max 5 each
 
 def find_section_changes(old_content, new_content):
-    """Find which section changed"""
-    old_sections = extract_sections(old_content)
-    new_sections = extract_sections(new_content)
-    
+    """Find which section had changes"""
     changes = []
-    old_sect_dict = {s['section']: s['content'] for s in old_sections}
-    new_sect_dict = {s['section']: s['content'] for s in new_sections}
+    lines = old_content.split('\n')
     
-    all_sections = set(old_sect_dict.keys()) | set(new_sect_dict.keys())
+    # Find section headers
+    sections = {}
+    current_section = "Document Start"
+    section_start = 0
     
-    for section in all_sections:
-        old_content = old_sect_dict.get(section, "")
-        new_content = new_sect_dict.get(section, "")
-        
-        if old_content != new_content:
-            # Find what changed in this section
-            sent_changes = find_sentence_changes(old_content, new_content)
-            if sent_changes:
-                changes.append({
-                    "section": section,
-                    "changes": sent_changes[:5]  # Max 5 changes per section
-                })
-            else:
-                # Content changed but same sentences - show first difference
-                if old_content and new_content:
-                    changes.append({
-                        "section": section,
-                        "changes": [{"type": "modified", "text": "Content modified (rephrased)"}]
-                    })
+    for i, line in enumerate(lines):
+        if re.match(r'^#{1,6}\s+', line):
+            sections[current_section] = {
+                "start": section_start,
+                "end": i,
+                "content": '\n'.join(lines[section_start:i])
+            }
+            current_section = re.sub(r'^#{1,6}\s+', '', line).strip()
+            section_start = i + 1
     
-    return changes[:3]  # Max 3 sections with changes
-
-def compare_contents(old_url, old_content, new_content):
-    """Deep comparison between old and new content"""
-    result = {
-        "old_length": len(old_content),
-        "new_length": len(new_content),
-        "old_lines": len(old_content.split('\n')),
-        "new_lines": len(new_content.split('\n')),
+    # Last section
+    sections[current_section] = {
+        "start": section_start,
+        "end": len(lines),
+        "content": '\n'.join(lines[section_start:])
     }
     
-    if old_content != new_content:
-        # Find section-level changes
-        section_changes = find_section_changes(old_content, new_content)
-        if section_changes:
-            result["section_changes"] = section_changes
-        
-        # Also show general sentence changes
-        sent_changes = find_sentence_changes(old_content, new_content)
-        if sent_changes:
-            # Categorize
-            added = [c for c in sent_changes if c['type'] == 'added']
-            removed = [c for c in sent_changes if c['type'] == 'removed']
-            
-            if added:
-                result["added"] = added[:3]
-            if removed:
-                result["removed"] = removed[:3]
+    # Compare sections
+    new_lines = new_content.split('\n')
+    new_sections = {}
+    current_section = "Document Start"
+    section_start = 0
     
-    return result
+    for i, line in enumerate(new_lines):
+        if re.match(r'^#{1,6}\s+', line):
+            new_sections[current_section] = {
+                "start": section_start,
+                "end": i,
+                "content": '\n'.join(new_lines[section_start:i])
+            }
+            current_section = re.sub(r'^#{1,6}\s+', '', line).strip()
+            section_start = i + 1
+    
+    new_sections[current_section] = {
+        "start": section_start,
+        "end": len(new_lines),
+        "content": '\n'.join(new_lines[section_start:])
+    }
+    
+    # Find changed sections
+    all_sects = set(sections.keys()) | set(new_sections.keys())
+    for sect in all_sects:
+        old_cont = sections.get(sect, {}).get("content", "")
+        new_cont = new_sections.get(sect, {}).get("content", "")
+        
+        if old_cont != new_cont:
+            added, removed = find_line_changes(old_cont, new_cont)
+            if added or removed:
+                changes.append({
+                    "section": sect,
+                    "added": added,
+                    "removed": removed
+                })
+    
+    return changes[:3]  # Max 3 sections
 
 def send_detailed_email(all_pages, changes_data):
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -185,14 +174,12 @@ Checked: {now}
 Pages Monitored: {all_pages}
 Changes Found: 0
 
-✅ NO CHANGES - Every page verified.
-
-The documentation is EXACTLY the same - no character differences.
+✅ NO CHANGES - Every page verified - exactly the same.
 
 View docs: {BASE_URL}
 
 ---
-Automated check daily at 12:00 PM PKT
+Automated daily check at 12:00 PM PKT
 """
     else:
         subject = f"🚨 360dialog Partner Docs - {total} Change(s) DETECTED!"
@@ -207,9 +194,9 @@ TOTAL CHANGES: {total}
         
         # New Pages
         if changes_data.get('additions'):
-            body += "\n" + "="*50 + "\n"
+            body += "\n" + "="*60 + "\n"
             body += "📄 NEW PAGES ADDED\n"
-            body += "="*50 + "\n\n"
+            body += "="*60 + "\n\n"
             for item in changes_data['additions']:
                 body += f"NEW PAGE:\n"
                 body += f"  Link: {item['url']}\n"
@@ -217,9 +204,9 @@ TOTAL CHANGES: {total}
         
         # Removed Pages
         if changes_data.get('deletions'):
-            body += "\n" + "="*50 + "\n"
+            body += "\n" + "="*60 + "\n"
             body += "🗑️ PAGES REMOVED/DELETED\n"
-            body += "="*50 + "\n\n"
+            body += "="*60 + "\n\n"
             for item in changes_data['deletions']:
                 body += f"REMOVED:\n"
                 body += f"  Link: {item['url']}\n"
@@ -227,52 +214,47 @@ TOTAL CHANGES: {total}
         
         # Modified Pages
         if changes_data.get('modifications'):
-            body += "\n" + "="*50 + "\n"
-            body += "✏️ PAGES UPDATED (With Details)\n"
-            body += "="*50 + "\n\n"
+            body += "\n" + "="*60 + "\n"
+            body += "✏️ PAGES UPDATED (With EXACT LINE DETAILS)\n"
+            body += "="*60 + "\n\n"
             for item in changes_data['modifications']:
                 body += f"UPDATED PAGE:\n"
                 body += f"  Link: {item['url']}\n\n"
                 
-                # Show size/word/line changes
+                # Size/word/line changes
                 diff = item['new_length'] - item['old_length']
                 diff_text = f"+{diff}" if diff > 0 else str(diff)
                 body += f"  Size: {item['old_length']:,} → {item['new_length']:,} bytes ({diff_text})\n"
                 body += f"  Words: {item.get('old_words', 'N/A'):,} → {item.get('new_words', 'N/A'):,}\n"
                 body += f"  Lines: {item.get('old_lines', 'N/A'):,} → {item.get('new_lines', 'N/A'):,}\n\n"
                 
-                # Show section changes if available
-                if item.get('section_changes'):
-                    body += "  Changed Sections:\n"
-                    for sect in item['section_changes']:
-                        body += f"    - Section: {sect['section']}\n"
-                        for change in sect.get('changes', []):
-                            if change['type'] == 'added':
-                                body += f"      + ADDED: {change['text'][:150]}...\n"
-                            elif change['type'] == 'removed':
-                                body += f"      - REMOVED: {change['text'][:150]}...\n"
-                            else:
-                                body += f"      ~ MODIFIED: {change['text']}\n"
-                    body += "\n"
+                # EXACT LINE CHANGES
+                if item.get('exact_changes'):
+                    for change in item['exact_changes']:
+                        body += f"  📍 Section: {change['section']}\n\n"
+                        
+if change.get('added'):
+                                body += f"     +++ LINES ADDED ({len(change['added'])}):\n"
+                                for line_info in change['added']:
+                                    body += f"       Line {line_info['line_number']}: {line_info['line']}\n"
+                                if line_info.get('context'):
+                                    body += f"            Context: {' | '.join(line_info['context'][:2])}\n"
+                            body += "\n"
+                        
+                        if change.get('removed'):
+                            body += f"     --- LINES REMOVED ({len(change['removed'])}):\n"
+                            for line_info in change['removed']:
+                                body += f"       Line {line_info['line_number']}: {line_info['line']}\n"
+                                if line_info.get('context'):
+                                    body += f"            Context: {' | '.join(line_info['context'][:2])}\n"
+                            body += "\n"
                 
-                # Show added sentences if no section changes
-                elif item.get('added'):
-                    body += "  Added sentences:\n"
-                    for s in item['added'][:2]:
-                        body += f"    + {s['text'][:150]}...\n"
-                    body += "\n"
-                
-                # Show removed sentences
-                elif item.get('removed'):
-                    body += "  Removed sentences:\n"
-                    for s in item['removed'][:2]:
-                        body += f"    - {s['text'][:150]}...\n"
-                    body += "\n"
+                body += "-"*60 + "\n\n"
         
         body += f"""View docs: {BASE_URL}
 
 ---
-⚠️ Baseline auto-updated after this notification.
+⚠️ Baseline auto-updated after notification.
 """
 
     msg = MIMEMultipart()
@@ -300,7 +282,7 @@ def run_check():
     
     urls = get_urls()
     current = {}
-    all_page_changes = []
+    all_modifications = []
     
     for url in urls:
         result = fetch_page(url)
@@ -310,58 +292,58 @@ def run_check():
                 "content_length": result["content_length"],
             }
             
-            # Check if this page has changed
             old_data = baseline["pages"].get(url, {})
             if old_data and old_data.get("hash") != result["hash"]:
-                # Deep comparison
-                old_content = old_data.get("_content", "")
-                new_content = result["content"]
-                
-                comparison = compare_contents(url, old_content, new_content)
-                all_page_changes.append({
+                mod_item = {
                     "url": url,
                     "old_length": old_data.get("content_length", 0),
                     "new_length": result["content_length"],
                     "old_words": old_data.get("word_count", 0),
-                    "new_words": len(new_content.split()),
+                    "new_words": len(result["content"].split()),
                     "old_lines": old_data.get("line_count", 0),
-                    "new_lines": len(new_content.split('\n')),
-                    **comparison
-                })
+                    "new_lines": len(result["content"].split('\n')),
+                }
+                
+                # Get EXACT line changes
+                old_content = old_data.get("_content", "")
+                new_content = result["content"]
+                
+                if old_content and new_content:
+                    # Find section-level exact changes
+                    exact_changes = find_section_changes(old_content, new_content)
+                    if exact_changes:
+                        mod_item["exact_changes"] = exact_changes
+                    
+                    # Also add/removed lines overall
+                    added, removed = find_line_changes(old_content, new_content)
+                    if added:
+                        mod_item["all_added"] = added
+                    if removed:
+                        mod_item["all_removed"] = removed
+                
+                all_modifications.append(mod_item)
         time.sleep(0.2)
     
     changes = {"additions": [], "deletions": [], "modifications": []}
     old_urls = set(baseline["pages"].keys())
     new_urls = set(current.keys())
     
-    # New pages added
     for url in new_urls - old_urls:
-        changes["additions"].append({
-            "url": url,
-            "new_length": current[url]["content_length"],
-        })
+        changes["additions"].append({"url": url, "new_length": current[url]["content_length"]})
     
-    # Pages removed
     for url in old_urls - new_urls:
-        changes["deletions"].append({
-            "url": url,
-            "old_length": baseline["pages"][url].get("content_length", 0),
-        })
+        changes["deletions"].append({"url": url, "old_length": baseline["pages"][url].get("content_length", 0)})
     
-    # Pages modified
-    for item in all_page_changes:
+    for item in all_modifications:
         changes["modifications"].append(item)
     
     total = len(changes["additions"]) + len(changes["deletions"]) + len(changes["modifications"])
     
     print(f"Changes found: {total}")
     
-    # Always send email
     send_detailed_email(len(urls), changes)
     
-    # Update baseline after notifying of changes
     if total > 0:
-        # Store full content for deep comparison next time
         for url in urls:
             result = fetch_page(url)
             if "error" not in result:
@@ -373,7 +355,7 @@ def run_check():
         baseline["last_checked"] = datetime.now().isoformat()
         with open(STORAGE_FILE, "w") as f:
             json.dump(baseline, f, indent=2)
-        print("Baseline updated with full content for next comparison")
+        print("Baseline updated with full content")
     
     return total
 
