@@ -1,0 +1,521 @@
+{
+  "initialized_at": "2026-04-27T18:40:19.235842",
+  "base_url": "https://docs.360dialog.com/partner",
+  "pages": {
+    "https://docs.360dialog.com/partner/get-started/master.md": {
+      "hash": "1d80e674f074c5de733f9685b138dbf04c50f111041472532e02e09f99693e17",
+      "content_length": 5109,
+      "fetched_at": "2026-04-27T18:40:20.286154"
+    },
+    "https://docs.360dialog.com/partner/get-started/quickstarts.md": {
+      "hash": "61899f5681950e27744d06ec8e67984a48a00e9ef38c5ea840f24609b4cd8386",
+      "content_length": 1487,
+      "fetched_at": "2026-04-27T18:40:20.810521"
+    },
+    "https://docs.360dialog.com/partner/get-started/quickstarts/get-started-as-a-partner.md": {
+      "hash": "c1dbb307138394cf69c373b38587fb034bf8d76ddb1b066d6dad2c778e208912",
+      "content_length": 14230,
+      "fetched_at": "2026-04-27T18:40:21.967265"
+    },
+    "https://docs.360dialog.com/partner/get-started/quickstarts/register-as-a-meta-tech-provider.md": {
+      "hash": "2cafbb16941f980903d27d88b7075bc216e2dd65ba6233c16727fb9c8b09b79c",
+      "content_length": 6901,
+      "fetched_at": "2026-04-27T18:40:23.052785"
+    },
+    "https://docs.360dialog.com/partner/get-started/quickstarts/add-a-whatsapp-number.md": {
+      "hash": "a0b472c55e3dac051a72c8e7b54595756cd5d21742d96aa166bee8b9c27144e9",
+      "content_length": 4330,
+      "fetched_at": "2026-04-27T18:40:23.956783"
+    },
+    "https://docs.360dialog.com/partner/get-started/quickstarts/create-a-message-template.md": {
+      "hash": "a44e8506d00ce67da0b55c2970ecf802b72e891aceb8dae321b570b08a3bf7e6",
+      "content_length": 6369,
+      "fetched_at": "2026-04-27T18:40:24.764788"
+    },
+    "https://docs.360dialog.com/partner/get-started/quickstarts/send-a-message.md": {
+      "hash": "9faecf212dda02ead37ff61dbedf83f1e706d31ac11ccc690576280424326903",
+      "content_length": 6896,
+      "fetched_at": "2026-04-27T18:40:25.697539"
+    },
+    "https://docs.360dialog.com/partner/get-started/pricing.md": {
+      "hash": "d41c82c1ed34a4488900d01b87521b6ef5300f6f99bf61cf3a199268b38453a8",
+      "content_length": 6338,
+      "fetched_at": "2026-04-27T18:40:26.291750"
+    },
+    "https://docs.360dialog.com/partner/get-started/billing-models.md": {
+      "hash": "8bf30b4b5606554db9f091243a7710a250aef655573ff6306a51b69375eaef6a",
+      "content_length": 3214,
+      "fetched_at": "2026-04-27T18:40:27.213267"
+    },
+    "https://docs.360dialog.com/partner/get-started/partner-api-integration.md": {
+      "hash": "191da798ca80dc258adb60c820fbd35ea19babe0fd0cb5761cc9414fb8b1c9a7",
+      "content_length": 5545,
+      "fetched_at": "2026-04-27T18:40:28.001995"
+    },
+    "https://docs.360dialog.com/partner/get-started/tech-provider-program.md": {
+      "hash": "99b5d3d1fec9d007199ec360dc49c4310c5a989e2c4fd48eb8c41e8f20906fa3",
+      "content_length": 3042,
+      "fetched_at": "2026-04-27T18:40:28.812963"
+    },
+    "https://docs.360dialog.com/partner/get-started/tech-provider-program/tech-provider-program-info.md": {
+      "hash": "7f2d70d87169720d8a80197455e8c210e1d80bbef2abbc09b0d9d315aae0b48c",
+      "content_length": 14311,
+      "fetched_at": "2026-04-27T18:40:29.724088"
+    },
+    "https://docs.360dialog.com/partner/get-started/tech-provider-program/become-a-meta-tech-provider.md": {
+      "hash": "ff935cb1edaa978de59fbad76a0a8a5aacedb3830a142bf6299ab1d42d7517cc",
+      "content_length": 27043,
+      "fetched_at": "2026-04-27T18:40:30.297397"
+    },
+    "https://docs.360dialog.com/partner/get-started/tech-provider-program/become-a-meta-tech-partner.md": {
+      "hash": "b0f13dd3f2119c388c9d6cb95dff609a2231185a21435807d35c512ba35f831d",
+      "content_length": 7138,
+      "fetched_at": "2026-04-27T18:40:31.058956"
+    },
+    "https://docs.360dialog.com/partner/get-started/alphas-and-betas.md": {
+      "hash": "6e93f977c1e54c2331c5632b470f54e196be89e6e10f57759e8355edcbd0c5eb",
+      "content_length": 5474,
+      "fetched_at": "2026-04-27T18:40:31.667248"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integrated-onboarding.md": {
+      "hash": "c3dd8130aaa4a94f33746b24c1842d7f8099d038875f5f96aaaefebb21d1ede8",
+      "content_length": 10616,
+      "fetched_at": "2026-04-27T18:40:32.729067"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integrated-onboarding/io-signature.md": {
+      "hash": "a79b144cc7c186a6d2b1bbf27a4967ad7e8093ab1877f5d61c7479b77c63c461",
+      "content_length": 9475,
+      "fetched_at": "2026-04-27T18:40:33.739624"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integrated-onboarding/using-direct-link.md": {
+      "hash": "10560f06ce2d236eac55fe6306d1cd757c3444e27cf0e815a05b5522e01a65f6",
+      "content_length": 4869,
+      "fetched_at": "2026-04-27T18:40:34.965558"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integrated-onboarding/connect-button.md": {
+      "hash": "991d8bc809c482bf60c2d07293700ac4818e955c032d486402582a1a4ead65aa",
+      "content_length": 14077,
+      "fetched_at": "2026-04-27T18:40:36.537381"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integrated-onboarding/using-custom-io.md": {
+      "hash": "b1d53717f0422b29f48843e165505f111bd9ba29330f10d177a75ffd8566c79f",
+      "content_length": 15846,
+      "fetched_at": "2026-04-27T18:40:37.630268"
+    },
+    "https://docs.360dialog.com/partner/onboarding/webhook-events-and-setup.md": {
+      "hash": "4a8a2c458dcce52405e554fde21b2b67ab40bd265a04706c023f43ff5e29e496",
+      "content_length": 1448,
+      "fetched_at": "2026-04-27T18:40:38.860240"
+    },
+    "https://docs.360dialog.com/partner/onboarding/webhook-events-and-setup/signature-validation.md": {
+      "hash": "2044689129f7b4302c3f3b38e80dbcd812b594cf8e753ab176b8a31d0b9a29cd",
+      "content_length": 6541,
+      "fetched_at": "2026-04-27T18:40:40.067896"
+    },
+    "https://docs.360dialog.com/partner/onboarding/webhook-events-and-setup/webhook-events-partner-and-messaging-api.md": {
+      "hash": "d31a314de4e8bd659fa8854c52ae9b6762a6f0b076cb0ae2b4e6f111b9f3c2d2",
+      "content_length": 67798,
+      "fetched_at": "2026-04-27T18:40:41.578333"
+    },
+    "https://docs.360dialog.com/partner/onboarding/webhook-events-and-setup/set-multiple-webhooks-for-phone-number.md": {
+      "hash": "949f24368495d3845084bc8b2237b0ecbde80150805df43f5f4d589dbf7e91bd",
+      "content_length": 4903,
+      "fetched_at": "2026-04-27T18:40:42.670545"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integration-best-practices.md": {
+      "hash": "b88613381789e55dbeabbedbdec1830f6b84de3724f32be3ca442655277f946b",
+      "content_length": 1755,
+      "fetched_at": "2026-04-27T18:40:43.876188"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integration-best-practices/architecture-and-security.md": {
+      "hash": "793ea42f8b7a19a56b748a84fff4a26b4f6af2c6e1ff327fb5dd93ed4ecc4386",
+      "content_length": 11846,
+      "fetched_at": "2026-04-27T18:40:45.449960"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integration-best-practices/sizing-your-environment-based-on-expected-throughput.md": {
+      "hash": "bcf8d4fde17301080d69179b437b39db6d754d0aa3a1fd2a3aa542510245c2d3",
+      "content_length": 3068,
+      "fetched_at": "2026-04-27T18:40:46.499892"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integration-best-practices/design-a-stable-webhook-receiving-endpoint.md": {
+      "hash": "0547dfd81c140b0df83b3b6a82e4000cd7a01ec070bd809fb12c46cf4de4f88f",
+      "content_length": 6206,
+      "fetched_at": "2026-04-27T18:40:47.822216"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integration-best-practices/design-a-resilient-message-sending-service.md": {
+      "hash": "dec602852b94caf5903ad8fcd0530be95bf3b5ea752b2ebd6040448b4ad9968c",
+      "content_length": 9011,
+      "fetched_at": "2026-04-27T18:40:48.902525"
+    },
+    "https://docs.360dialog.com/partner/onboarding/integration-best-practices/api-key-authentication-for-the-partner-api.md": {
+      "hash": "4e0640721d98fd4e39647a63308c5080b2c63a1665c5ede5e14272df58b93624",
+      "content_length": 7185,
+      "fetched_at": "2026-04-27T18:40:50.007380"
+    },
+    "https://docs.360dialog.com/partner/onboarding/partner-api-sandbox.md": {
+      "hash": "f4363ddd54ad782224932eb43a83ff82be63ae412df753d87e853f80696ef32a",
+      "content_length": 7824,
+      "fetched_at": "2026-04-27T18:40:51.309504"
+    },
+    "https://docs.360dialog.com/partner/onboarding/partner-hosted-embedded-signup.md": {
+      "hash": "185ea8d19123c764649ac2226c4a881a100623250b5b6a7179e097c059f3b93e",
+      "content_length": 6893,
+      "fetched_at": "2026-04-27T18:40:52.537244"
+    },
+    "https://docs.360dialog.com/partner/onboarding/whatsapp-coexistence.md": {
+      "hash": "581564c7ad3fb039d346e3c73f4fadfde906672fbb9ca238c52ac2280a29cdd9",
+      "content_length": 9754,
+      "fetched_at": "2026-04-27T18:40:53.434484"
+    },
+    "https://docs.360dialog.com/partner/onboarding/whatsapp-coexistence/coexistence-onboarding.md": {
+      "hash": "a0b338e07ba185c9344321bc0d8151778b931e8a005235f309f4ac78686fc190",
+      "content_length": 6635,
+      "fetched_at": "2026-04-27T18:40:54.584114"
+    },
+    "https://docs.360dialog.com/partner/onboarding/whatsapp-coexistence/coexistence-webhooks.md": {
+      "hash": "e9fedeb15fad2ab22f409b8351c51debce7f2d7c592e938d877d7f764f1da5f2",
+      "content_length": 6794,
+      "fetched_at": "2026-04-27T18:40:55.975962"
+    },
+    "https://docs.360dialog.com/partner/onboarding/whatsapp-coexistence/testing-different-messaging-scenarios.md": {
+      "hash": "b4327e8b885102bc1dc8c4ac077a8a7adc7a57132edab83704927a417d7d4c7a",
+      "content_length": 2211,
+      "fetched_at": "2026-04-27T18:40:57.058029"
+    },
+    "https://docs.360dialog.com/partner/partner-api/overview.md": {
+      "hash": "576507b21f56adf242939acc0d4e9e9bacf10f575c7fe6742a3eaf4ddb8c2d45",
+      "content_length": 12268,
+      "fetched_at": "2026-04-27T18:40:57.912079"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference.md": {
+      "hash": "3edec9c2fb68df237ee5d0e37cde046a618c9c099037914af8b44ab68682f1a4",
+      "content_length": 1963,
+      "fetched_at": "2026-04-27T18:40:58.700744"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/partner-management.md": {
+      "hash": "77ea2ec1bafa7eb58776c6e24bebe9e75107c33e9fe36da06db26d47af7662c6",
+      "content_length": 14103,
+      "fetched_at": "2026-04-27T18:40:59.291816"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/waba-account-management.md": {
+      "hash": "ba942a2806e546646f25723d155c8cfa6f8c914ca6269d86dd9513e8e6a89f02",
+      "content_length": 5903,
+      "fetched_at": "2026-04-27T18:40:59.893804"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/client-management.md": {
+      "hash": "11041cd0a05bc8577c509ef9e0d3aeaa612705e3bbd3e7a9f72c80521c89bba7",
+      "content_length": 24184,
+      "fetched_at": "2026-04-27T18:41:00.425720"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/channel-management.md": {
+      "hash": "453c252b1df98e9902f46a4fe1d7274790ac44ae20755e184d620b74c76ffcd1",
+      "content_length": 83350,
+      "fetched_at": "2026-04-27T18:41:01.317770"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/webhook-management.md": {
+      "hash": "6aba9e72c2481194bd59a7312dc8e0f9e45c5c25b11d254405ffd9e99e9cb392",
+      "content_length": 23998,
+      "fetched_at": "2026-04-27T18:41:01.933865"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/balance-and-usage.md": {
+      "hash": "4c1dd52d2f27eb92b610a4f7f1926bae06b08160665332ff53fa76c29d82919c",
+      "content_length": 31076,
+      "fetched_at": "2026-04-27T18:41:02.507259"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/account-sharing.md": {
+      "hash": "e3a1edd034585ceafe9b305121c5d76cda5e5b9f8dbb25be6fd13a7e9a0ef0f5",
+      "content_length": 9904,
+      "fetched_at": "2026-04-27T18:41:03.474436"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/settings.md": {
+      "hash": "db15d2355ffd951de3c1abb226790aeb92400500941715565555fe19b8a419b4",
+      "content_length": 18151,
+      "fetched_at": "2026-04-27T18:41:04.110402"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/partner-change-request-management.md": {
+      "hash": "0a9d1ab9986e56a1e7296973388195487c46e32ca80c73644a4dfbf499848789",
+      "content_length": 10833,
+      "fetched_at": "2026-04-27T18:41:05.255629"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/templates-management.md": {
+      "hash": "f763392b9c4200cc6eb1f47e9e99ad0fd1c8d65ab99f3b5d1548c82aabc15578",
+      "content_length": 41627,
+      "fetched_at": "2026-04-27T18:41:05.772002"
+    },
+    "https://docs.360dialog.com/partner/partner-api/api-reference/whatsapp-flows.md": {
+      "hash": "1762f369dacdca869acce8e208b26bfb76ca7c38aa28f995c3cdc0fea092067c",
+      "content_length": 48841,
+      "fetched_at": "2026-04-27T18:41:06.264395"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/overview.md": {
+      "hash": "46ef792ccd98ccca41144e8f2737a3057dc235e5614b579bb7b3ae830e2279d9",
+      "content_length": 5687,
+      "fetched_at": "2026-04-27T18:41:07.084581"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/wabas-numbers.md": {
+      "hash": "3ad10c64f5770aa73f1901814ae3d17627ec27eb405e369581da1ade6aa86ae9",
+      "content_length": 3147,
+      "fetched_at": "2026-04-27T18:41:08.067973"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/wabas-numbers/details.md": {
+      "hash": "070acb1e5005bb284bfcd6f637ca5107cb51ecae1a67b3beac1a4421d15b615a",
+      "content_length": 3892,
+      "fetched_at": "2026-04-27T18:41:09.191988"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/wabas-numbers/waba-profile-info.md": {
+      "hash": "910125433e2bc0a588e44a74765a2cb2c142b7e6f2e19d23b3ef2e12bb640fa3",
+      "content_length": 4313,
+      "fetched_at": "2026-04-27T18:41:10.467051"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/users.md": {
+      "hash": "126743168f8fa8cada0bc639978a293d9e3ecadbb271a4b6d0be7d94f4a1999a",
+      "content_length": 2390,
+      "fetched_at": "2026-04-27T18:41:11.218643"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/profile.md": {
+      "hash": "c5fb65011b4cd80cd9ae755c7f03f45535006928069b749573814fc9d607fb28",
+      "content_length": 2927,
+      "fetched_at": "2026-04-27T18:41:11.960603"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/integration.md": {
+      "hash": "42b62f746f7fd9fda943722e7e379451a69de82d675e61697be1880cc8feed06",
+      "content_length": 6665,
+      "fetched_at": "2026-04-27T18:41:12.819720"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/api-keys.md": {
+      "hash": "cb121ef40a51e2e573fc3f923abdd7e782bff2b44765213fa5252ef80e449821",
+      "content_length": 4202,
+      "fetched_at": "2026-04-27T18:41:13.782096"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/overview-tab.md": {
+      "hash": "9d869a85a28f73f744d1f1e6dd22a1af13f95afaf6122458c11ae73f4df26b6d",
+      "content_length": 5226,
+      "fetched_at": "2026-04-27T18:41:14.879776"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/invoices-tab.md": {
+      "hash": "86564d36209767ffd789b8407310c1c2a0dd8fe8f590e0598db69c0b00d854ca",
+      "content_length": 3842,
+      "fetched_at": "2026-04-27T18:41:15.691416"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/billing-tab.md": {
+      "hash": "1eb3bede6049bd21984c636f389871f07fb04a9cadfd8c927131ad94fc0bbd56",
+      "content_length": 5356,
+      "fetched_at": "2026-04-27T18:41:16.463041"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/billing-tab/brazil-pix-and-boleto-paymnets.md": {
+      "hash": "1a9e6a83d6fa186c56e82b3f6f8c331ec49362897f1988bc3b57fcd90bc8e5fd",
+      "content_length": 8439,
+      "fetched_at": "2026-04-27T18:41:17.849842"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/subcriptions-tab.md": {
+      "hash": "978349dd0ee1717a21d5cac2d35004be3ec10e02ffda7da32195dbc6031ebb82",
+      "content_length": 2521,
+      "fetched_at": "2026-04-27T18:41:18.892525"
+    },
+    "https://docs.360dialog.com/partner/partner-hub/checking-usage-and-statistics.md": {
+      "hash": "10ada035c0c5bce86492b0915b4ee5ea1f71b8cbffcb75d1af50b2a922e6b568",
+      "content_length": 8432,
+      "fetched_at": "2026-04-27T18:41:20.113462"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages.md": {
+      "hash": "d59c29771e9c5c13b940bfa0dbac20d742e2cfb49fdbf36bb4a64e5e0a4c666c",
+      "content_length": 17921,
+      "fetched_at": "2026-04-27T18:41:20.966647"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/create-and-manage-template-messages.md": {
+      "hash": "6032539fcff84e34a8ed219494109c318ca5b381bf915e8b5307874f36226e6b",
+      "content_length": 22608,
+      "fetched_at": "2026-04-27T18:41:22.164107"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/template-analytics.md": {
+      "hash": "02b99665b8445ce4b8cba22cb90784b7f98b1ccb493edb450add917ca65bb3c0",
+      "content_length": 27202,
+      "fetched_at": "2026-04-27T18:41:23.323796"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/template-statuses.md": {
+      "hash": "80d38366ea34b33edcf1c37e870f189ea2db2176f66a361fb3feef02d93f872c",
+      "content_length": 23842,
+      "fetched_at": "2026-04-27T18:41:24.598978"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/template-library.md": {
+      "hash": "66beb4f9d83ef9ada38e5934d76ed257674496133c2ae237d1d36b8a3878ea16",
+      "content_length": 17411,
+      "fetched_at": "2026-04-27T18:41:25.426913"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/template-elements.md": {
+      "hash": "28763925a02fc053467bfee014df1880ecb88eb505559b9d08fb2b2856656689",
+      "content_length": 25897,
+      "fetched_at": "2026-04-27T18:41:26.475187"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/sending-template-messages.md": {
+      "hash": "69065cd326b544706bf9ffebd128c1ea357f68e52e86b194744905d204ea2255",
+      "content_length": 17503,
+      "fetched_at": "2026-04-27T18:41:27.387833"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/authentication-templates.md": {
+      "hash": "c7ed29c108510d61a6662dede73717baf625123b9023d3ceb47a59d8ff39b680",
+      "content_length": 20011,
+      "fetched_at": "2026-04-27T18:41:31.105592"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/authentication-templates/zero-tap-authentication-templates.md": {
+      "hash": "570218d8809a268e8ce7bf9c938289f896600c3b8d09a634d6cc81be2040e1be",
+      "content_length": 20445,
+      "fetched_at": "2026-04-27T18:41:33.255367"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/authentication-templates/one-tap-autofill-authentication-templates.md": {
+      "hash": "382ca7c5b74d29dff37f4d4c6bca73d8804f2ea2c8cdd5ea399db35ba69ff969",
+      "content_length": 10666,
+      "fetched_at": "2026-04-27T18:41:35.266573"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/authentication-templates/copy-code-authentication-templates.md": {
+      "hash": "92077bd1f1451b56ea817266199404f1aff0552527c9f225396289202503ff3f",
+      "content_length": 11703,
+      "fetched_at": "2026-04-27T18:41:36.907843"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/catalog-templates.md": {
+      "hash": "f17e313ebf4fa462dd0cb733b5bdc06e8ef9a2897977b5f079fc8b0ab151b93f",
+      "content_length": 16351,
+      "fetched_at": "2026-04-27T18:41:39.156603"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/product-card-carousel-templates.md": {
+      "hash": "78eb66818f60a770ef9126b54193928fc27453fa142847eae4808e524d6d4f13",
+      "content_length": 17055,
+      "fetched_at": "2026-04-27T18:41:41.212691"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/single-product-message-templates.md": {
+      "hash": "714ab82136dc181cd988f1fcf2f3cc13836fd083996ea5bf3105347c3c11ddb8",
+      "content_length": 7657,
+      "fetched_at": "2026-04-27T18:41:43.118557"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/coupon-code-templates.md": {
+      "hash": "e9f43920f8427da4b29d48fe35da872ec08db705dbe733df0482104a69c22213",
+      "content_length": 14483,
+      "fetched_at": "2026-04-27T18:41:49.573355"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/limited-time-offer-templates.md": {
+      "hash": "414e731173fa9e26fad9123c7c7b94ffb697283302693091224624e4231965f8",
+      "content_length": 25161,
+      "fetched_at": "2026-04-27T18:41:53.074568"
+    },
+    "https://docs.360dialog.com/partner/messaging/template-messages/multi-product-templates.md": {
+      "hash": "1199dc826b1fe212157322a33dd4490de86ab82e1f0c37c54d8f8a8bfc0827f9",
+      "content_length": 21988,
+      "fetched_at": "2026-04-27T18:41:55.693507"
+    },
+    "https://docs.360dialog.com/partner/messaging/marketing-messages.md": {
+      "hash": "2836709a8baa81b6b93a5754b395b9d693ed056ed88d69f8f599adac5778ee07",
+      "content_length": 5205,
+      "fetched_at": "2026-04-27T18:42:04.081694"
+    },
+    "https://docs.360dialog.com/partner/messaging/marketing-messages/onboarding-and-sending-messages.md": {
+      "hash": "962abe064a5508cf1d9e6e4e95c4bb78a61db40e47262858779ac54e823a2efb",
+      "content_length": 15399,
+      "fetched_at": "2026-04-27T18:42:05.903698"
+    },
+    "https://docs.360dialog.com/partner/messaging/marketing-messages/technical-details-for-mm-api.md": {
+      "hash": "f1797e092c7e2b5a34af9c2c1dc068e66192462aea7b897c55d397431df73f52",
+      "content_length": 8414,
+      "fetched_at": "2026-04-27T18:42:08.277324"
+    },
+    "https://docs.360dialog.com/partner/messaging/marketing-messages/expected-errors-and-programming-languages.md": {
+      "hash": "6631ed3d8d032628fa43d691dad51c944f4dc75f66f85ac6d0b7e1c412c61c4c",
+      "content_length": 9435,
+      "fetched_at": "2026-04-27T18:42:10.383819"
+    },
+    "https://docs.360dialog.com/partner/messaging/marketing-messages/marketing-messages-best-practices.md": {
+      "hash": "b15a9dc38521a210630328abf3f0d06b078fa293d8abff49ee8719be70335715",
+      "content_length": 5697,
+      "fetched_at": "2026-04-27T18:42:11.946302"
+    },
+    "https://docs.360dialog.com/partner/messaging/utility-messages.md": {
+      "hash": "e3dce061f5c183d853c27661343b443be23491a3e1c7cc7673125c6aae86dad2",
+      "content_length": 1503,
+      "fetched_at": "2026-04-27T18:42:13.518597"
+    },
+    "https://docs.360dialog.com/partner/messaging/utility-messages/utility-messages-what-is-it-and-key-benefits.md": {
+      "hash": "6abc02e29628187888579b95b60b04b47c0e5c70b822f0c80ae75e3354871f03",
+      "content_length": 3934,
+      "fetched_at": "2026-04-27T18:42:15.092497"
+    },
+    "https://docs.360dialog.com/partner/messaging/utility-messages/utility-messages-use-cases.md": {
+      "hash": "1bd3ac194ba1892f41c2484e21f84ebab06e6aa5203c47782ce53225c9c50ae5",
+      "content_length": 5872,
+      "fetched_at": "2026-04-27T18:42:16.506838"
+    },
+    "https://docs.360dialog.com/partner/messaging/utility-messages/writing-effective-utility-messages.md": {
+      "hash": "26e52ec2391df28f6e0ac7dd8c97e4e5e7c13ca48884bc4ceab4cef8ee6a7116",
+      "content_length": 11443,
+      "fetched_at": "2026-04-27T18:42:18.763894"
+    },
+    "https://docs.360dialog.com/partner/messaging/utility-messages/managing-opt-ins-opt-outs-and-preferences.md": {
+      "hash": "ad86fd4667f8ecc2488387f4d998afd8b9c208bd3d413c05ac33f06e2fe3a6ba",
+      "content_length": 4214,
+      "fetched_at": "2026-04-27T18:42:20.758801"
+    },
+    "https://docs.360dialog.com/partner/messaging/utility-messages/automation-human-handoff-and-quick-replies.md": {
+      "hash": "e3d22cd5b5951bc72e36cdb3f8c64081bf59aecc07bd5efdfd36c22c80622bcd",
+      "content_length": 3147,
+      "fetched_at": "2026-04-27T18:42:22.692757"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments.md": {
+      "hash": "e5e04b3138601a13cacc2136ca6ade4d2ed45749341944edc47543d46fa3e256",
+      "content_length": 2879,
+      "fetched_at": "2026-04-27T18:42:24.344153"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-india-only.md": {
+      "hash": "53bb62d3aef388807041d59240fe6d617b1ece96358d92f41091867f86b13dd3",
+      "content_length": 1702,
+      "fetched_at": "2026-04-27T18:42:27.272514"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-india-only/receive-whatsapp-payments-via-payments-gateway.md": {
+      "hash": "624355202462d06247f67dffdcfe76020a3e52f02672f0aec17180370f7ddd2c",
+      "content_length": 101605,
+      "fetched_at": "2026-04-27T18:42:29.923902"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-india-only/receive-whatsapp-payments-via-payment-links.md": {
+      "hash": "d40592e72e21003a7b414e1803564b83ed7d88bce8b14fa23a26ffad599abb9b",
+      "content_length": 51992,
+      "fetched_at": "2026-04-27T18:42:32.403035"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-india-only/order-details-template-message.md": {
+      "hash": "ffc2d701de157f6590dce78547a83cd106e4ecbd4238c2fe1edae35bd1950c99",
+      "content_length": 9989,
+      "fetched_at": "2026-04-27T18:42:34.367184"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-singapore-only.md": {
+      "hash": "36dc65f57e4df3c3f5fafc440f75358d000007f0018112e001595b192ef0ec4b",
+      "content_length": 1723,
+      "fetched_at": "2026-04-27T18:42:35.918425"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-singapore-only/receive-whatsapp-payments-via-stripe.md": {
+      "hash": "1ca577a91bb66a7692bc8df3840ad4964e0db0709930ca5aaeb9b62b65d6b8ab",
+      "content_length": 61575,
+      "fetched_at": "2026-04-27T18:42:39.929895"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-api-brazil.md": {
+      "hash": "c907c726ea69693881a2d0a70c8b324eb476005dda66cd296047c16a2855de81",
+      "content_length": 4508,
+      "fetched_at": "2026-04-27T18:42:42.009421"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-api-brazil/how-to-use-payments-api.md": {
+      "hash": "d116693bbd77268742bb87a16743aab34c4f23e83548d395c56fef1554c9b915",
+      "content_length": 37129,
+      "fetched_at": "2026-04-27T18:42:44.828430"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/payments-api-brazil/create-order_details-template-message-via-api.md": {
+      "hash": "e40c06628e27137117afad0c1d73fb16489529502b073ac2375a41e5bb7f1fba",
+      "content_length": 2373,
+      "fetched_at": "2026-04-27T18:42:46.615198"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/products-and-catalogs.md": {
+      "hash": "704f969401724caf1d67e0b944c3028d52031e28ecd3d36223dcbb25cf6e105e",
+      "content_length": 18404,
+      "fetched_at": "2026-04-27T18:42:48.944350"
+    },
+    "https://docs.360dialog.com/partner/messaging/commerce-and-payments/products-and-catalogs/india-businesses-compliance-for-commerce.md": {
+      "hash": "733545116d1e22b5c1461cb3306c95baf84db9cdaf96d5352a036b2fa29cab7e",
+      "content_length": 8887,
+      "fetched_at": "2026-04-27T18:42:50.886249"
+    }
+  }
+}
