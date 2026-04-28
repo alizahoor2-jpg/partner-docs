@@ -3,8 +3,7 @@ name: Partner Docs Check
 on:
   schedule:
     - cron: '0 7 * * *'  # Daily at 12:00 PM PKT (07:00 UTC)
-  workflow_dispatch:  # Manual trigger
-  repository_dispatch:
+  workflow_dispatch:
 
 jobs:
   check:
@@ -28,44 +27,38 @@ jobs:
         shell: bash
       
       - name: Send email notification
-        if: success()
-        env:
-          GMAIL: ${{ secrets.GMAIL_ADDR }}
-          APP_PASS: ${{ secrets.APP_PASS }}
-          SEND_TO: ${{ secrets.SEND_TO }}
         run: |
           python3 -c "
 import smtplib
-import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from datetime import datetime
 
-gmail = os.environ.get('GMAIL', '')
-app_pass = os.environ.get('APP_PASS', '')
-send_to = os.environ.get('SEND_TO', '')
+gmail = 'mohdalizahoor@gmail.com'
+app_pass = 'qlwblerbnwomowna'
+send_to = 'mohdalizahoor@gmail.com'
 
-if gmail and app_pass and send_to:
-    msg = MIMEMultipart()
-    msg['From'] = gmail
-    msg['To'] = send_to
-    msg['Subject'] = '📊 360dialog Partner Docs - Daily Check Complete'
-    body = '''360dialog Partner Docs Check
+msg = MIMEMultipart()
+msg['From'] = gmail
+msg['To'] = send_to
+msg['Subject'] = '📊 360dialog Partner Docs - Daily Check Complete'
+
+body = '''360dialog Partner Docs Check
 ================================
 
 Status: Completed successfully
 
-The daily check has finished. 
-Check GitHub Actions log for details.
+The daily check has finished.
 
 ---
 Automated from GitHub Actions
 '''
-    msg.attach(MIMEText(body, 'plain'))
-    
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(gmail, app_pass)
-    server.sendmail(gmail, send_to, msg.as_string())
-    server.quit()
-    print('Email sent')
+msg.attach(MIMEText(body, 'plain'))
+
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login(gmail, app_pass)
+server.sendmail(gmail, send_to, msg.as_string())
+server.quit()
+print('Email sent')
 "
