@@ -1,0 +1,83 @@
+name: Partner Docs Check
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # Daily at 12:00 PM PKT (07:00 UTC)
+  workflow_dispatch:  # Manual trigger
+  repository_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: pip install requests pyyaml
+      
+      - name: Run check
+        id: check
+        run: |
+          cd /home/runner/work/partner-docs/partner-docs
+          python3 360dialog_docs_check.py
+          echo "changes_found=$?" >> $GITHUB_OUTPUT
+        shell: bash
+      
+      - name: Show result summary
+        run: |
+          echo "✅ Check completed"
+          echo "Check GitHub Actions log for details"
+
+      - name: Upload changes artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-result
+          path: /home/runner/work/partner-docs/partner-docs/cron.log
+          retention-days: 7
+      
+      - name: Send email notification
+        if: env.GMAIL != ''
+        env:
+          GMAIL: ${{ secrets.GMAIL }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+          RECIPIENT: ${{ secrets.RECIPIENT }}
+        run: |
+          if [ -n "$GMAIL" ]; then
+            python3 -c "
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from datetime import datetime
+
+msg = MIMEMultipart()
+msg['From'] = '${{ env.GMAIL }}'
+msg['To'] = '${{ env.RECIPIENT }}'
+msg['Subject'] = '📊 360dialog Partner Docs - GitHub Actions Check'
+body = '''GitHub Actions Check Complete
+================================
+
+Time: ${{ github.run_timestamp }}
+Status: Success
+
+View full log in GitHub Actions.
+
+---
+Automated from GitHub Actions
+'''
+msg.attach(MIMEText(body, 'plain'))
+
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login('${{ env.GMAIL }}', '${{ env.APP_PASSWORD }}')
+server.sendmail('${{ env.GMAIL }}', '${{ env.RECIPIENT }}', msg.as_string())
+server.quit()
+print('Email sent')
+"
+          fi
