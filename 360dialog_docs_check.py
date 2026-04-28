@@ -18,9 +18,9 @@ BASE_URL = "https://docs.360dialog.com/partner"
 STORAGE_FILE = Path.home() / ".360dialog_docs_baseline.json"
 
 # Email config (can be overridden by environment variables for GitHub Actions)
-GMAIL = os.environ.get("GMAIL", "mohdalizahoor@gmail.com")
-APP_PASSWORD = os.environ.get("APP_PASSWORD", "qlwblerbnwomowna")
-RECIPIENT = os.environ.get("RECIPIENT", "mohdalizahoor@gmail.com")
+GMAIL = os.environ.get("GMAIL_ADDR", "mohdalizahoor@gmail.com")
+APP_PASSWORD = os.environ.get("APP_PASS", "qlwblerbnwomowna")
+RECIPIENT = os.environ.get("SEND_TO", "mohdalizahoor@gmail.com")
 
 def fetch_page(url):
     import requests

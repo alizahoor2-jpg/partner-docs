@@ -19,65 +19,53 @@ jobs:
           python-version: '3.11'
       
       - name: Install dependencies
-        run: pip install requests pyyaml
+        run: pip install requests
       
       - name: Run check
-        id: check
         run: |
-          cd /home/runner/work/partner-docs/partner-docs
+          cd ${{ github.workspace }}
           python3 360dialog_docs_check.py
-          echo "changes_found=$?" >> $GITHUB_OUTPUT
         shell: bash
       
-      - name: Show result summary
-        run: |
-          echo "✅ Check completed"
-          echo "Check GitHub Actions log for details"
-
-      - name: Upload changes artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: check-result
-          path: /home/runner/work/partner-docs/partner-docs/cron.log
-          retention-days: 7
-      
       - name: Send email notification
-        if: env.GMAIL != ''
+        if: success()
         env:
-          GMAIL: ${{ secrets.GMAIL }}
-          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
-          RECIPIENT: ${{ secrets.RECIPIENT }}
+          GMAIL: ${{ secrets.GMAIL_ADDR }}
+          APP_PASS: ${{ secrets.APP_PASS }}
+          SEND_TO: ${{ secrets.SEND_TO }}
         run: |
-          if [ -n "$GMAIL" ]; then
-            python3 -c "
+          python3 -c "
 import smtplib
+import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from datetime import datetime
 
-msg = MIMEMultipart()
-msg['From'] = '${{ env.GMAIL }}'
-msg['To'] = '${{ env.RECIPIENT }}'
-msg['Subject'] = '📊 360dialog Partner Docs - GitHub Actions Check'
-body = '''GitHub Actions Check Complete
+gmail = os.environ.get('GMAIL', '')
+app_pass = os.environ.get('APP_PASS', '')
+send_to = os.environ.get('SEND_TO', '')
+
+if gmail and app_pass and send_to:
+    msg = MIMEMultipart()
+    msg['From'] = gmail
+    msg['To'] = send_to
+    msg['Subject'] = '📊 360dialog Partner Docs - Daily Check Complete'
+    body = '''360dialog Partner Docs Check
 ================================
 
-Time: ${{ github.run_timestamp }}
-Status: Success
+Status: Completed successfully
 
-View full log in GitHub Actions.
+The daily check has finished. 
+Check GitHub Actions log for details.
 
 ---
 Automated from GitHub Actions
 '''
-msg.attach(MIMEText(body, 'plain'))
-
-server = smtplib.SMTP('smtp.gmail.com', 587)
-server.starttls()
-server.login('${{ env.GMAIL }}', '${{ env.APP_PASSWORD }}')
-server.sendmail('${{ env.GMAIL }}', '${{ env.RECIPIENT }}', msg.as_string())
-server.quit()
-print('Email sent')
+    msg.attach(MIMEText(body, 'plain'))
+    
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(gmail, app_pass)
+    server.sendmail(gmail, send_to, msg.as_string())
+    server.quit()
+    print('Email sent')
 "
-          fi
