@@ -233,20 +233,17 @@ TOTAL CHANGES: {total}
                     for change in item['exact_changes']:
                         body += f"  📍 Section: {change['section']}\n\n"
                         
-if change.get('added'):
-                                body += f"     +++ LINES ADDED ({len(change['added'])}):\n"
-                                for line_info in change['added']:
-                                    body += f"       Line {line_info['line_number']}: {line_info['line']}\n"
-                                if line_info.get('context'):
-                                    body += f"            Context: {' | '.join(line_info['context'][:2])}\n"
+                        if change.get('added'):
+                            body += f"     +++ LINES ADDED ({len(change['added'])}):\n"
+                            for line_info in change['added']:
+                                body += f"       Line {line_info['line_number']}: {line_info['line']}\n"
                             body += "\n"
                         
                         if change.get('removed'):
                             body += f"     --- LINES REMOVED ({len(change['removed'])}):\n"
                             for line_info in change['removed']:
                                 body += f"       Line {line_info['line_number']}: {line_info['line']}\n"
-                                if line_info.get('context'):
-                                    body += f"            Context: {' | '.join(line_info['context'][:2])}\n"
+                            body += "\n"
                             body += "\n"
                 
                 body += "-"*60 + "\n\n"
