@@ -338,9 +338,8 @@ def run_check():
     
     print(f"Changes found: {total}")
     
-    send_detailed_email(len(urls), changes)
-    
     if total > 0:
+        send_detailed_email(len(urls), changes)
         for url in urls:
             result = fetch_page(url)
             if "error" not in result:
