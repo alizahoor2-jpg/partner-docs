@@ -22,6 +22,3 @@ jobs:
 
       - name: Run check
         run: python3 360dialog_docs_check.py
-
-      - name: Send email notification
-        run: python3 send_email_gh.py
