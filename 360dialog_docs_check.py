@@ -340,19 +340,22 @@ def run_check():
     
     send_detailed_email(len(urls), changes)
     
-    if total > 0:
-        for url in urls:
-            result = fetch_page(url)
-            if "error" not in result:
-                current[url]["_content"] = result["content"]
-                current[url]["word_count"] = len(result["content"].split())
-                current[url]["line_count"] = len(result["content"].split('\n'))
-        
-        baseline["pages"] = current
-        baseline["last_checked"] = datetime.now().isoformat()
-        with open(STORAGE_FILE, "w") as f:
-            json.dump(baseline, f, indent=2)
-        print("Baseline updated with full content")
+    for url in urls:
+        result = fetch_page(url)
+        if "error" not in result:
+            current[url] = baseline["pages"].get(url, {})
+            current[url]["hash"] = result["hash"]
+            current[url]["content_length"] = result["content_length"]
+            current[url]["word_count"] = len(result["content"].split())
+            current[url]["line_count"] = len(result["content"].split('\n'))
+            current[url]["_content"] = result["content"]
+            current[url]["fetched_at"] = datetime.now().isoformat()
+    
+    baseline["pages"] = current
+    baseline["last_checked"] = datetime.now().isoformat()
+    with open(STORAGE_FILE, "w") as f:
+        json.dump(baseline, f, indent=2)
+    print("Baseline updated with full content")
     
     return total
 
